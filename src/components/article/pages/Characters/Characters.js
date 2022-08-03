@@ -1,12 +1,19 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import CharactersBrowser from './CharactersBrowser/CharactersBrowser';
+import CharacterPage from './CharachterPage/CharacterPage';
 
 const Characters = (props) => {
-    
+
     return (
         <div>
-            <h1>Characters</h1>
+            <Routes>
+                <Route path='/*' element={<CharactersBrowser />} />
+                <Route path='/:name' element={<CharacterPage />} />
+            </Routes>
         </div>
-    )
+    );
 };
 
 export default Characters;

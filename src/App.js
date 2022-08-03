@@ -1,4 +1,7 @@
 import './App.css';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux/es/exports';
 
 import homeIcon from './assets/images/icons/navbar/64x64/home_rose.png';
 import articlesIcon from './assets/images/icons/navbar/64x64/articles_rose.png';
@@ -7,12 +10,35 @@ import grammarIcon from './assets/images/icons/navbar/64x64/grammar_rose.png';
 import questionsIcon from './assets/images/icons/navbar/64x64/questions_rose.png';
 import headerLogo from './assets/images/logos/header_bg_transparent.png';
 
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-
 import AuthStatus from './components/header/AuthStatus';
-import Blank from './components/article/common/Blank';
+import Content from './components/article/common/Content';
+
+import { userCheckAuth } from './asyncActions/http/user';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    userCheckAuth()
+      .then((data) => { })
+      .finally(console.log('Page loaded!'));
+    setTimeout((data) => { setLoading(false) }, 2000);
+  }, []);
+
+  if (loading) {
+    return (
+      <div>
+        <div class="space">
+          <div class="f-circle"></div>
+          <div class="s-circle"></div>
+          <div class="t-circle"></div>
+          <div class="circle"></div>
+        </div>
+      </div>
+    )
+  };
+
   return (<div>
     <BrowserRouter>
       <div className='bg-gradient-to-r from-rose-200 to-pink-300 min-h-screen'>
@@ -101,14 +127,14 @@ function App() {
                 </NavLink>
               </div>
             </nav>
-        
+
           </div>
           <div className='grid grid-cols-12 h-full'>
             <div className='col-span-12 h-16' />
             <div className='col-span-3'>
             </div>
             <article className='col-span-6 pt-4 min-h-5/6 max-h-full'>
-              <Blank />
+              <Content />
             </article>
             <aside className='col-span-3'>
 
