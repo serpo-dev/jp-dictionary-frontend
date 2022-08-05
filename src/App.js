@@ -14,14 +14,20 @@ import AuthStatus from './components/header/AuthStatus';
 import Content from './components/article/common/Content';
 
 import { userCheckAuth } from './asyncActions/http/user';
+import { setAuthActionCreator, setUserActionCreator } from './redux/reducers/user/userActionCreators';
+
 
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(window.localStorage)
     userCheckAuth()
-      .then((data) => { })
+      .then((userData) => {
+        dispatch(setUserActionCreator(userData));
+        dispatch(setAuthActionCreator());
+      })
       .finally(console.log('Page loaded!'));
     setTimeout((data) => { setLoading(false) }, 2000);
   }, []);

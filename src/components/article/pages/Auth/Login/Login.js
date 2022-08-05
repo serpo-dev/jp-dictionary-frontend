@@ -4,6 +4,7 @@ import { setUserLoginThunk } from '../../../../../asyncActions/userThunks';
 import { useDispatch } from 'react-redux/es/exports';
 import { connect } from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import { userCheckAuth } from '../../../../../asyncActions/http/user';
 
 const mapStateToProps = (state) => {
     return ({
@@ -21,6 +22,7 @@ const Login = (props) => {
     const dispatch = useDispatch();
     const click = () => {
         dispatch(setUserLoginThunk(login, email, password));
+        userCheckAuth()
     };
 
     if (props.isAuth) {

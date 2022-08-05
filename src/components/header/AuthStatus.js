@@ -11,7 +11,6 @@ const mapStateToProps = (state) => {
 };
 
 const AuthStatus = (props) => {
-    console.log(props.isAuth)
     if (props.isAuth) {
         return (
             <NavLink to='/home' className="w-26 flex flex-row items-center gap-0 transition duration-100 ease-out hover:ease-in hover:drop-shadow rounded-full bg-rose-400 hover:bg-rose-300">

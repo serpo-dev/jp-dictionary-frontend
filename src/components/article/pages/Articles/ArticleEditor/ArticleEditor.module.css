@@ -1,0 +1,7 @@
+.editor {
+    white-space: normal;
+}
+
+.editor:focus-visible {
+    outline: none;
+} 

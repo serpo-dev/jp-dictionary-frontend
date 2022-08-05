@@ -13,6 +13,7 @@ export const userLogin = async (login, email, password) => {
         );
         const dataDecoded = jwt_decode(response.data.token);
         localStorage.setItem('token', response.data.token);
+        console.log(window.localStorage)
         return dataDecoded;
     } catch (err) {
         console.log(`Incorrect login/email/password. Error:`, err)
@@ -31,7 +32,8 @@ export const userRegistration = async (login, email, password) => {
             }
         );
         const dataDecoded = jwt_decode(response.data.token);
-        localStorage.setItem('token', response.data.token);
+        window.localStorage.setItem('token', response.data.token);
+        console.log(window.localStorage)
         return dataDecoded;
     } catch (err) {
         console.log(`Registration is failed. Error:`, err)
@@ -41,7 +43,7 @@ export const userRegistration = async (login, email, password) => {
 
 export const userCheckAuth = async () => {
     const response = await $authHost.get('api/user/auth');
-    const dataDecoded = jwt_decode(response.data.token);
     localStorage.setItem('token', response.data.token);
+    const dataDecoded = jwt_decode(response.data.token);
     return dataDecoded;
 };

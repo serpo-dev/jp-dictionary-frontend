@@ -5,9 +5,8 @@ export const userReducer = (state = userInitialState, action) => {
     switch (action.type) {
         case userActionTypes.SET_USER:
             const payload = action.payload;
-            const newState = {
+            return {
                 ...state,
-                isAuth: true,
                 user: {
                     ...state.user,
                     id: payload.id,
@@ -23,7 +22,20 @@ export const userReducer = (state = userInitialState, action) => {
                     level: payload.level
                 }
             };
-            return newState;
+        case userActionTypes.SET_AUTH:
+            return {
+                ...state,
+                isAuth: true,
+                user: {
+                    ...state.user,
+                },
+                personalInfo: {
+                    ...state.personalInfo,
+                },
+                progress: {
+                    ...state.progress,
+                }
+            };
         default:
             return state;
     };
