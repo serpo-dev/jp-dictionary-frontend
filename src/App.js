@@ -22,7 +22,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(window.localStorage)
     userCheckAuth()
       .then((userData) => {
         dispatch(setUserActionCreator(userData));
