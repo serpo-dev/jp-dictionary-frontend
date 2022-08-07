@@ -5,19 +5,9 @@ import stylesheet from './ArticleEditor.module.css';
 // max tag length - 102 symbols (<1-100>)
 
 const ArticleEditor = (props) => {
-    const [content, setContent] = useState(' ');
-
-
-    console.log('SECOND GLOBAL')
-    // onKeyPress
-    const handleEnterPress = (event) => {
-        if (event.key === 'Enter') {
-
-        };
-    };
+    const [content, setContent] = useState();
 
     console.log('LOADING')
-    console.log('CONTENT: ', content)
 
     function setCaretToPos(elem, pos) {
         const range = document.createRange();
@@ -36,7 +26,7 @@ const ArticleEditor = (props) => {
             document.querySelector(`#${stylesheet.editor}`).innerHTML = current;
             return;
         };
-        console.log( document.querySelector(`#${stylesheet.editor}`))
+        console.log(document.querySelector(`#${stylesheet.editor}`))
         document.querySelector(`#${stylesheet.editor}`).innerHTML = current;
         console.log('CURRENT: ', current)
 
@@ -277,7 +267,7 @@ const ArticleEditor = (props) => {
         while (b < symbolsToStrings.length) {
             switch (symbolsToStrings[b]) {
                 case '<br>':
-                    convertedToHTML.push(<br/>)
+                    convertedToHTML.push(<br />)
                     break;
                 case '<b>':
                     booleanBold = !booleanBold;
@@ -310,30 +300,136 @@ const ArticleEditor = (props) => {
         } else {
             setContent('test')
         }
-        
-
         console.log('HTML')
     };
 
-    const setCaret = () => {
-        const num = document.querySelector(`#${stylesheet.editor}`).innerText.length;
-        setCaretToPos(document.querySelector(`#${stylesheet.editor}`), 4);
-    };
-    // onKeyPress
-
     const test = () => {
-        const abc = document.querySelector(`#${stylesheet.editor}`).innerHTML;
-        const newABC = `<div class='blyat'>` + abc + `</div>`
-        document.querySelector(`#${stylesheet.editor}`).innerHTML = newABC
+        console.log(window.getSelection())
+
+        //  Получаем html (тип - string).
+        const object = document.querySelector(`#${stylesheet.editor}`);
+        const html = object.innerHTML;
+        console.log(html)
+        console.log(content)
+        console.log(html.length)
+
+        //  Делаем так, чтобы при полном форматировании блока (Ctrl + A + Del)
+        //  сам блок визуально не удалялся (он удаляется, если пропадает 
+        //  деление текста на div или между <div></div> нет пробела).
+        if (html === '<div></div>') {
+            document.querySelector(`#${stylesheet.editor}`).innerHTML = '<div> </div>';
+            return;
+        } else if (html === '<br>') {
+            document.querySelector(`#${stylesheet.editor}`).innerHTML = '<div> </div>';
+            return;
+        } else if (html === '<div></div><div><br></div>') {
+            document.querySelector(`#${stylesheet.editor}`).innerHTML = '<div> </div>';
+            return;
+        } else if (html.length === 0) {
+            document.querySelector(`#${stylesheet.editor}`).innerHTML = '<div> </div>';
+            return;
+        };
+
+        //  Побочный эффект предыдущего обработчика - это пробел перед
+        //  первым введенным символом. Его нужно удалить, если блок 
+        //  содержит > 1 символов (первый символ - это сам пробел).
+        if (html.length >= 13 && html[5] === ' ') {
+            let remain = html.split('');
+            const removed = remain.splice(5, 1);
+            remain = remain.join('');
+            document.querySelector(`#${stylesheet.editor}`).innerHTML = remain;
+            return;
+        };
+
+        //  Присваиваем обработанный html (все тот же тип string) 
+        //  содержимому блока.
+        document.querySelector(`#${stylesheet.editor}`).innerHTML = html;
+
+        //  Заносим html в localState.
+        setContent(html);
+
+        //  Сравниваем длины предыдущего и текущего состояний,
+        //  пользуясь особенностью, что content !== html, т.к.
+        //  эта функция выполняется до перерендерв компоненты и
+        //  использует необновленный локальный state. 
+        let isCurrentLonger;
+        if (content.length < html.length) {
+            isCurrentLonger = false;
+        } else if (content.length > html.length) {
+            isCurrentLonger = true;
+        } else {
+            console.log('CONTENT и HTML имеют одинаковые длины');
+            return;
+        };
+
+        //  Определяем номер символа, с которого строки начинают 
+        //  отличаться друг от друга.
+        let mismatch = 0;
+        while (mismatch < html.length) {
+            const isMismatch = html[mismatch] !== content[mismatch];
+            if (isMismatch) {
+                break;
+            };
+            mismatch++;
+        };
+       
+
+        //  Поскольку строка разбита на части, упакованные в div,
+        //  то до конкретного символа достучаться не так просто.
+        //  Для того, чтобы указать место постановки курсора, необходимо
+        //  знать номер блока div и позицию символа в нем. 
+        //  Проще всего в таком случае создать массив, в который внести
+        //  как элементы части текста, разделенные тегами div.
+        //  Метод slice(1) необходимо применить, так как при использовании
+        //  другого метода разделения split('<div>') в начале массива 
+        //  появляется пустая строка '', которая не несет никакой 
+        //  информационной ценности.
+        //  Переменная divNum будет отражать номер div блока, в котором
+        //  содержится искомый символ. Номер самого символа (переменная pos)
+        //  найдем через разность. 
+        //  При увеличении значения суммы добавляем + 5, потому что
+        //  все <div> были вырезаны методом split(), их длину нужно учесть.
+        const noStartDiv = html.split('<div>');
+        const noDiv = noStartDiv.slice(1);
+        let divNum = 0;
+        let sum = 0;
+        for (let i = 0; i < noDiv.length; i++) {
+            sum = sum + noDiv[i].length + 5;
+            if (sum > mismatch) {
+                break;
+            };
+            divNum++;
+        };
+        const div = noDiv[divNum];
+        const pos = div.length - (sum - mismatch);
+
+        //  Непосредственно установка положения курсора в нужное место.
+        //  Булева переменная isCollapseStart настраивает метод 
+        //  Rande.collapse(), у которого значение true отвечает за инсерт
+        //  в начало символа, а false - в конец. Таким образом, если
+        //  пользователь увеличил строку, то необходимо установить
+        //  курсор в положение после символа.
+        const isCollapseStart = !isCurrentLonger;
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.setStart(object.childNodes[divNum].childNodes[0], pos);
+        range.collapse(isCollapseStart);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    };
+
+    const select = () => {
+        const ooo = window.getSelection().anchorNode.parentNode.innerHTML
+        console.log(window.getSelection())
     }
 
     return (
         <div>
             <div>
-                <button >Cursor</button>
+                <button onClick={select}>Cursor</button>
             </div>
             <div>
-                <div onInput={test} id={stylesheet.editor} className={stylesheet.editor} contentEditable >{content}</div>
+                <div onInput={test} id={stylesheet.editor} className={stylesheet.editor} contentEditable ><div> </div></div>
             </div>
         </div>
 

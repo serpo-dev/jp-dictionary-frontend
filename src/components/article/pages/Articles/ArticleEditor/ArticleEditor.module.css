@@ -1,5 +1,5 @@
 .editor {
-    white-space: normal;
+    white-space: pre-wrap;
 }
 
 .editor:focus-visible {
