@@ -24,8 +24,11 @@ function App() {
   useEffect(() => {
     userCheckAuth()
       .then((userData) => {
-        dispatch(setUserActionCreator(userData));
-        dispatch(setAuthActionCreator());
+        if (userData) {
+          console.log(userData)
+          dispatch(setUserActionCreator(userData));
+          dispatch(setAuthActionCreator());
+        };
       })
       .finally(console.log('Page loaded!'));
     setTimeout((data) => { setLoading(false) }, 2000);
