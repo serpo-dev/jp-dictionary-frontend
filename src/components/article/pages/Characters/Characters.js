@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import CharactersBrowser from './CharactersBrowser/CharactersBrowser';
 import CharacterPage from './CharachterPage/CharacterPage';
+import CharacterEditor from './CharacterEditor/CharacterEditor';
 
 const Characters = (props) => {
 
@@ -11,6 +12,7 @@ const Characters = (props) => {
             <Routes>
                 <Route path='/*' element={<CharactersBrowser />} />
                 <Route path='/:name' element={<CharacterPage />} />
+                <Route path='/edit/:name' element={<CharacterEditor />} />
             </Routes>
         </div>
     );
