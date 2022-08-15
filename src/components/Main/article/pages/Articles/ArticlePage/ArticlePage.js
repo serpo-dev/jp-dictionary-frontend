@@ -1,24 +1,41 @@
-import React from "react";
+import React, { useState } from 'react';
 import stylesheet from './ArticlePage.module.css';
 
-const ArticlePage = (props) => {
+const ArticlePage = () => {
     const imageUrl = 'https://sun9-58.userapi.com/impg/TMJQYg6GWJgsRnQ0PadCncXjnJn8Q0ZQcPybNA/mqidpeU9Ez0.jpg?size=1642x1913&quality=96&sign=a28cd52b38d0d7822f73189eb83c89b7&type=album';
 
-    return (
-        <div>
-            <div>
+    const [_windowWidth, setWindowWidth] = useState();
+    window.addEventListener('resize', event => {
+        setWindowWidth(window.innerWidth);
+    });
+    let rectLeft = document.getElementById('dynamic_bg_article')
+        ? document.getElementById('dynamic_bg_article').getBoundingClientRect().left - 16 + 'px'
+        : '0px';
+    const setBgImageSize = function () {
+        if (_windowWidth < 768) {
+            return `${_windowWidth}px ${_windowWidth * 0.5625}px`;
+        } else if (_windowWidth < 1024) {
+            return '500px 281px';
+        } else if (_windowWidth < 1280) {
+            return '600px 338px';
+        } else {
+            return '700px 394px';
+        };
+    };
 
-            </div>
-            <div className={stylesheet.disable_text_selection}>
-                <div className="h-60 pointer-events-none">
-                    <img className="hover: object-cover h-full w-full rounded-lg" src={imageUrl} />
-                </div>
-            </div>
+    return (
+        <div id='dynamic_bg_article' >
+            <div className='h-[250px] -m-4 bg-no-repeat bg-fixed rounded-lg' style={{
+                backgroundImage: `url(${imageUrl})`,
+                backgroundPositionY: '78px',
+                backgroundPositionX: `${rectLeft}`,
+                backgroundSize: `${setBgImageSize()}`
+            }} />
             <div className='mt-8 ml-7 mr-7'>
-                <h1 className="text-5xl font-bold text-center mb-10">
+                <h1 className='text-5xl font-bold text-center mb-10'>
                     Пельменей нет, есть харухизм
                 </h1>
-                <p className="text-xl text-justify">
+                <p className='text-xl text-justify'>
                     «Если смысл жизни не в пельменях категории ''А'', то в чем тогда?» — каждый из нас задавался этим вопросом хоть раз в жизни. А задавались ли вы вопросом о том, какое у вас есть право на то, чтобы дискредитировать пельмени по их принадлежности к определенной категории? Я давно предлагал упразднить деление пельменей на категории и даже однажды попытался внести эту идею в массы, но вызванная кем-то в мясной отдел супермаркета бригада санитаров меня неправильно поняла.
 
                     Сложно не принять тот факт, что жизнь за рамками желания поесть пельмени оказывает деструктуризующий эффект на психику человека. Люди не нейросети. Люди могут не пережить чувства безразличия к пельменям, которое возникает, когда тотчас же была навёрнута целая тарелка. Насчет судьбы нейросетей не стоит волноваться: прогресс никогда не идет вспять и однажды человечество все-таки наделит двоичный код возможностями есть пельмени и не думать о том, что случится, когда они закончатся. Машины будут знать, что такое счастье, и я посылаю свою искреннюю радость за них в это светлое будущее. Однако мы живем настоящим, поэтому прежде нам предстоит окунуться в нишу насущных проблем. Если не пельмени, то что еще может человека сподвигнуть на новые свершения?
@@ -36,10 +53,10 @@ const ArticlePage = (props) => {
                     А цитаты внизу я не смог прочитать, как ни старался. Они не читаются, их за меня все время проговаривает хриплый голос главной героини из русской озвучки.
                 </p>
                 <div>
-                    <div class="relative flex pt-12 pb-5 items-center">
-                        <div class="flex-grow border-t border-gray-800"></div>
-                        <span class="flex-shrink font-semibold mx-4 text-gray-800">20th June 2022</span>
-                        <div class="flex-grow border-t border-gray-800"></div>
+                    <div class='relative flex pt-12 pb-5 items-center'>
+                        <div class='flex-grow border-t border-gray-800'></div>
+                        <span class='flex-shrink font-semibold mx-4 text-gray-800'>20th June 2022</span>
+                        <div class='flex-grow border-t border-gray-800'></div>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux/es/exports';
-import { setUserRegistrationThunk } from '../../../../../asyncActions/userThunks';
+import { setUserRegistrationThunk } from '../../../../../../asyncActions/userThunks';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 

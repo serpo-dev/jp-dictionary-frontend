@@ -1,16 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
-import { setUserLoginThunk } from '../../../../../asyncActions/userThunks';
-import { useDispatch } from 'react-redux/es/exports';
+import { setUserLoginThunk } from '../../../../../../asyncActions/userThunks';
 import { connect } from 'react-redux';
-import {useNavigate} from 'react-router-dom';
-import { userCheckAuth } from '../../../../../asyncActions/http/user';
+import { useNavigate } from 'react-router-dom';
+import { userCheckAuth } from '../../../../../../asyncActions/http/user';
 
-const mapStateToProps = (state) => {
-    return ({
-        isAuth: state.user.isAuth
-    });
-};
+
+const mapStateToProps = (state) => ({
+    isAuth: state.user.isAuth
+});
+const mapDispatchToProps = (dispatch) => ({
+    setUserLoginThunk: (login, email, password) => dispatch(setUserLoginThunk(login, email, password))
+});
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -19,9 +20,8 @@ const Login = (props) => {
     const login = nickname;
     const email = null;
 
-    const dispatch = useDispatch();
     const click = () => {
-        dispatch(setUserLoginThunk(login, email, password));
+        props.setUserLoginThunk(login, email, password);
         userCheckAuth()
     };
 
@@ -55,8 +55,7 @@ const Login = (props) => {
                 </div>
             </div>
         )
-    }   
+    }
 };
 
-const LoginContainer = connect(mapStateToProps)(Login);
-export default LoginContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

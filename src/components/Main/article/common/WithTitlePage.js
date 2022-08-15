@@ -20,7 +20,6 @@ const WithTitlePage = (props) => {
         };
     };
 
-
     return (
         <div className="bg-white w-full h-fit rounded-lg">
             <div className="grid grid-col-1">

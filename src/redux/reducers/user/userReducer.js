@@ -36,6 +36,20 @@ export const userReducer = (state = userInitialState, action) => {
                     ...state.progress,
                 }
             };
+        case userActionTypes.DROP_AUTH:
+            return {
+                ...userInitialState,
+                isAuth: false,
+                user: {
+                    ...userInitialState.user,
+                },
+                personalInfo: {
+                    ...userInitialState.personalInfo,
+                },
+                progress: {
+                    ...userInitialState.progress,
+                }
+            };
         default:
             return state;
     };

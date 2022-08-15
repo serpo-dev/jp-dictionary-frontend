@@ -1,0 +1,118 @@
+  .background{
+      background-color:#16161a;  
+    }
+    
+  .space{
+    width: 300px;
+    height:300px;  
+    position:relative;
+    top:calc(50vh - 150px);
+    left:calc(50% - 150px);
+    background-color:#16161a;
+  }
+  
+  .circle{
+    width:80px;
+    height:80px;
+    background-color:#ef4565;
+    border:1px solid transparent;
+    border-radius:50%;
+    position:absolute;
+    top:calc(50% - 40px);
+    left:calc(50% - 40px);
+    transition:1s;
+  }
+  
+  .f_circle{
+    position:absolute;
+    width:95%;
+    height:95%;
+    left:2.5%;
+    top:2.5%;
+    border-radius:50%;
+    border:1px solid #ccc;
+    animation: rotate 2s linear 0s infinite;
+  }
+  
+  .f_circle::after{
+    content:"";
+    display:inline-block;
+    width:20px;
+    height:20px;
+    position:relative;
+    left:80px;
+    border-radius:50%;
+    background-color:#2cb67d;
+  }
+  
+  /* second circle */
+  .s_circle{
+    width:75%;
+    height:75%;
+    position:absolute;
+    top:calc(50% - 37.5%);
+    left:calc(50% - 37.5%);
+    border:1px solid #ccc;
+    border-radius:50%;
+    animation: rotate 4s linear 0s infinite;
+  }
+  
+  .s_circle::after{
+    content:"";
+    display:inline-block;
+    width:20px;
+    height:20px;
+    position:relative;
+    left:60px;
+    border-radius:50%;
+    background-color:#72757e;
+  }
+  
+  /* third circle */
+  .t_circle{
+    width:55%;
+    height:55%;
+    position:absolute;
+    left:calc(50% - 27.5%);
+    top:calc(50% - 27.5%);
+    border-radius:50%;
+    border:1px solid #ccc;
+    animation: rotate 5s linear 0s infinite;
+  }
+  
+  .t_circle::after{
+    content:"";
+    display:inline-block;
+    width:20px;
+    height:20px;
+    position:relative;
+    left:40px;
+    border-radius:50%;
+    background-color:#7f5af0;
+  }
+  
+  /* keyframe rotate anmiation */
+  @keyFrames rotate{
+    from{
+      transform:rotate(360deg);
+    }
+    to{
+      transform:rotate(0deg);
+    }
+  }
+  
+  
+  .circle:hover{
+    width:120px;
+    height:120px;
+    top:calc(50% - 60px);
+    left:calc(50% - 60px);
+  }
+  
+  .f_circle:hover ,
+  .s_circle:hover ,
+  .t_circle:hover
+  {
+    border:2px solid #ccc;
+    padding:-1px;
+  }
