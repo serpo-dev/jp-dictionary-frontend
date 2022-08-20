@@ -1,7 +1,7 @@
 const userActionTypes = {
     SET_AUTH: 'SET_AUTH',
     SET_USER: 'SET_USER',
-    DROP_AUTH: 'DROP_AUTH',
+    REMOVE_USER: 'REMOVE_USER',
 };
 
 export default userActionTypes;

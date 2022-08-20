@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     user: userReducer,
 
     articles: articlesReducer,
-    characters: characterReducer,
+    character: characterReducer,
     grammar: grammarReducer,
     questions: questionsReducer
 });

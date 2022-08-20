@@ -13,11 +13,18 @@ export const userLogin = async (login, email, password) => {
         );
         const dataDecoded = jwt_decode(response.data.token);
         localStorage.setItem('token', response.data.token);
-        console.log(window.localStorage)
         return dataDecoded;
     } catch (err) {
         console.log(`Incorrect login/email/password. Error:`, err)
         return null;
+    };
+};
+
+export const userLogout = () => {
+    try {
+        localStorage.removeItem('token');
+    } catch (err) {
+        console.log(`Impossible to logout. Error:`, err)
     };
 };
 
@@ -33,7 +40,6 @@ export const userRegistration = async (login, email, password) => {
         );
         const dataDecoded = jwt_decode(response.data.token);
         window.localStorage.setItem('token', response.data.token);
-        console.log(window.localStorage)
         return dataDecoded;
     } catch (err) {
         console.log(`Registration is failed. Error:`, err)

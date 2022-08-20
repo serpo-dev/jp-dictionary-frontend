@@ -9,6 +9,6 @@ export const setUserActionCreator = (userData) => ({
     payload: userData
 });
 
-export const dropAuthActionCreator = () => ({
-    type: userActionTypes.DROP_AUTH
+export const removeUserActionCreator = () => ({
+    type: userActionTypes.REMOVE_USER
 });

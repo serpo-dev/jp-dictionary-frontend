@@ -1,10 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
 import authIcon from '../../../assets/images/icons/header/64x64/auth_rose_900.png';
+import { userLogoutThunk } from "../../../asyncActions/userThunks";
 
-import { dropAuthActionCreator } from "../../../redux/reducers/user/userActionCreators";
+import messagesIcon from '../../../assets/images/icons/header/64x64/messages_rose_900.png';
+import profileIcon from '../../../assets/images/icons/header/64x64/profile_rose_900.png';
+import settingsIcon from '../../../assets/images/icons/header/64x64/settings_rose_900.png';
+
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +18,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        dropAuth: () => dispatch(dropAuthActionCreator()),
+        userLogout: () => dispatch(userLogoutThunk()),
     };
 };
 
@@ -22,12 +26,20 @@ const mapDispatchToProps = (dispatch) => {
 const AuthStatus = (props) => {
     if (props.isAuth) {
         return (
-            <button onClick={props.dropAuth} className="w-26 flex flex-row items-center gap-0 transition duration-100 ease-out hover:ease-in hover:drop-shadow rounded-full bg-rose-400 hover:bg-rose-300">
-                <img src={authIcon} className='h-5 ml-3' />
-                <p className="mt-1 mb-1 ml-1 mr-4 font-bold text-rose-900">
-                    Logout
-                </p>
-            </button>
+            <div className="flex flex-row">
+                <div className='mr-6 self-center'>
+                    <img src={profileIcon} className='h-7 cursor-pointer' />
+                </div>
+                <div className='mr-6 self-center'>
+                    <img src={messagesIcon} className='h-7 cursor-pointer' />
+                </div>
+                <div className='mr-6 self-center'>
+                    <img src={settingsIcon} className='h-7 cursor-pointer' />
+                </div>
+                <div>
+                    <img src={authIcon} onClick={props.userLogout} className='h-7 cursor-pointer' />
+                </div>
+            </div>
         );
     } else {
         return (

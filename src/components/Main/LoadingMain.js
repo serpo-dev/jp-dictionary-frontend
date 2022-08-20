@@ -1,7 +1,7 @@
 import React from 'react';
 import stylesheet from './LoadingMain.module.css';
 
-const LoadingMain = (props) => {
+const LoadingMain = () => {
     return (
         <div className={`${stylesheet.background} h-screen w-screen`}>
             <div className={stylesheet.space}>

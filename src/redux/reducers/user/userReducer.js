@@ -36,7 +36,7 @@ export const userReducer = (state = userInitialState, action) => {
                     ...state.progress,
                 }
             };
-        case userActionTypes.DROP_AUTH:
+        case userActionTypes.REMOVE_USER:
             return {
                 ...userInitialState,
                 isAuth: false,
