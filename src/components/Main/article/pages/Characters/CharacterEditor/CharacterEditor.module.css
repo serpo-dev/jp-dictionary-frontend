@@ -1,0 +1,18 @@
+textarea::-webkit-scrollbar-thumb {
+     border-radius: 16px;
+    background-color: #c13e3e;
+}
+
+textarea::-webkit-scrollbar {
+   width: 8px;
+    border-radius: 16px;
+}
+
+textarea::-webkit-scrollbar-track {
+    border-radius: 16px;
+    background-color: #fdc8d3;
+}
+
+textarea {
+    resize: none;
+}

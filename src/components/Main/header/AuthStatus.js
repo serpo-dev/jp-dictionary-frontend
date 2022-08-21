@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import authIcon from '../../../assets/images/icons/header/64x64/auth_rose_900.png';
 import { userLogoutThunk } from "../../../asyncActions/userThunks";
 
-import messagesIcon from '../../../assets/images/icons/header/64x64/messages_rose_900.png';
-import profileIcon from '../../../assets/images/icons/header/64x64/profile_rose_900.png';
-import settingsIcon from '../../../assets/images/icons/header/64x64/settings_rose_900.png';
+import messagesIcon from '../../../assets/images/icons/header/64x64/messages_pink.png';
+import profileIcon from '../../../assets/images/icons/header/64x64/profile_pink.png';
+import settingsIcon from '../../../assets/images/icons/header/64x64/settings_pink.png';
+import logoutIcon from '../../../assets/images/icons/header/64x64/auth_pink.png';
 
 
 const mapStateToProps = (state) => {
@@ -37,7 +38,7 @@ const AuthStatus = (props) => {
                     <img src={settingsIcon} className='h-7 cursor-pointer' />
                 </div>
                 <div>
-                    <img src={authIcon} onClick={props.userLogout} className='h-7 cursor-pointer' />
+                    <img src={logoutIcon} onClick={props.userLogout} className='h-7 cursor-pointer' />
                 </div>
             </div>
         );
