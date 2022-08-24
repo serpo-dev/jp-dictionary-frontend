@@ -11,9 +11,18 @@ export const characterReducer = (state = characterInitialState, action) => {
                 type: characterPart.type,
                 title: characterPart.title,
                 meaning: characterPart.meaning,
+                description: characterPart.description,
                 mnemoDisc: characterPart.mnemoDisc,
                 img: characterPart.img,
                 mnemoImg: characterPart.mnemoImg,
+                variants: characterPart.variants,
+
+                associations: action.payload.associations,
+
+                examLevel: null,
+
+                translations: [],
+                examples: [],
 
                 attemptToLoad: true,
             };
@@ -21,15 +30,69 @@ export const characterReducer = (state = characterInitialState, action) => {
                 const kanjiPart = action.payload.kanjiPart;
                 setCharacterNewState = {
                     ...setCharacterNewState,
+
                     examLevel: kanjiPart.examLevel,
+
+                    translations: kanjiPart.translations,
+                    examples: kanjiPart.examples,
                 };
             };
             return setCharacterNewState;
+
+        case characterActionTypes.UPDATE_CHARACTER:
+            let updateCharacterNewState = {
+                ...state,
+                variants: state.variants.length !== 0 ? [...state.variants] : [],
+                associations: state.associations.length !== 0 ? [...state.associations] : [],
+                translations: state.translations.length !== 0 ? [...state.translations] : [],
+                examples: state.examples.length !== 0 ? [...state.examples] : [],
+            };
+            switch (action.payload[1]) {
+                case 'TITLE':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        title: action.payload[0],
+                    };
+                    break;
+                case 'MEANING':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        meaning: action.payload[0],
+                    };
+                    break;
+                case 'DESCRIPTION':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        description: action.payload[0],
+                    };
+                    break;
+                case 'MNEMO_DISC':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        mnemoDisc: action.payload[0],
+                    };
+                    break;
+                case 'STROKE_ORDER_IMG':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        img: action.payload[0],
+                    };
+                    break;
+                case 'MNEMO_IMG':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        mnemoImg: action.payload[0],
+                    };
+                    break;
+            };
+            return updateCharacterNewState;
+
         case characterActionTypes.SET_ATTEMPT:
             return {
                 ...state,
                 attemptToLoad: true,
             };
+
         default:
             return state;
     };

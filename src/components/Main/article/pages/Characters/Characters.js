@@ -3,7 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import CharactersBrowser from './CharactersBrowser/CharactersBrowser';
 import CharacterPage from './CharachterPage/CharacterPage';
-import CharacterEditor from './CharacterEditor/CharacterEditor';
+import ChangeCharacterContainer from './CharacterEditor/ChangeCharacterContainer';
+import CreateCharacterContainer from './CharacterEditor/CreateCharacterContainer';
 import NotFound from './NotFound.js/NotFound';
 
 
@@ -13,7 +14,8 @@ const Characters = () => {
             <Routes>
                 <Route path='/*' element={<CharactersBrowser />} />
                 <Route path='/:name' element={<CharacterPage />} />
-                <Route path='/:name/edit' element={<CharacterEditor />} />
+                <Route path='/:name/edit' element={<ChangeCharacterContainer />} />
+                <Route path='/create' element={<CreateCharacterContainer />} />
                 <Route path='/:name/*' element={<NotFound />} />
             </Routes>
         </div>

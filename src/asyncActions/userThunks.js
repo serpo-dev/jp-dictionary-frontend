@@ -21,7 +21,6 @@ export const setUserRegistrationThunk = (login, email, password) => async (dispa
     if (userData) {
         dispatch(setUserActionCreator(userData));
         dispatch(setAuthActionCreator());
-        console.log(userData)
     } else {
         console.log(`setUserRegistrationThunk error`)
     };

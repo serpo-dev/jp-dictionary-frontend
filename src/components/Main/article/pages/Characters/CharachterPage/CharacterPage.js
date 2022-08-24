@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import stylesheet from './CharacterPage.module.css';
 
@@ -47,7 +47,6 @@ const CharacterPage = (props) => {
 
     const params = useParams();
     const characterId = Number(params.name.split('-')[0]);
-    const dispatch = useDispatch();
     const {
         id,
         URI,
@@ -62,7 +61,7 @@ const CharacterPage = (props) => {
         attemptToLoad
     } = props;
     useEffect(() => {
-        dispatch(setCharacterThunk(characterId));
+        props.setCharacterThunk(characterId);
     }, []);
 
     const navigate = useNavigate();
@@ -74,7 +73,7 @@ const CharacterPage = (props) => {
         navigate(`../`);
     };
 
-    const defaultImg = 'https://sun9-72.userapi.com/impg/Tt7NlQr1LSxcvX4xL1sUFyDWPm4UNfACudS1Hw/NoelkSDHGwE.jpg?size=1919x1079&quality=95&sign=9d4655d7955c84853503efdcccc00fb4&type=album';
+    const defaultImg = 'https://sun9-42.userapi.com/impg/n0SEG-EyA_ZMnRogha9C0d6vcJr7tMurMgzEqQ/mxSrqn_y3Sc.jpg?size=1919x1079&quality=95&sign=77baa2b7ae88385d26588ce1b7e2b5b3&type=album';
 
 
     return (
@@ -159,4 +158,6 @@ const CharacterPage = (props) => {
     );
 };
 
-export default connect(mapStateToProps)(CharacterPage);
+export default connect(mapStateToProps, {
+    setCharacterThunk,
+})(CharacterPage);
