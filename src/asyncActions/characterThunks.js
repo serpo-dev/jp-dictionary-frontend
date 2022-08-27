@@ -15,7 +15,8 @@ export const setCharacterThunk = (characterId) => async (dispatch) => {
 
 export const createCharacterThunk = async (characterData) => {
     try {
-        await createCharacter({ ...characterData });
+        const res = await createCharacter({ ...characterData });
+        return res;
     } catch (err) {
         console.log('The problem is caught in characterThunk');
     };

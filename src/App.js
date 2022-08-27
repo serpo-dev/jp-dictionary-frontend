@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { connect, useDispatch } from 'react-redux/es/exports';
+import { useDispatch } from 'react-redux/es/exports';
 
 import { userCheckAuth } from './asyncActions/http/user';
 import { setAuthActionCreator, setUserActionCreator } from './redux/reducers/user/userActionCreators';

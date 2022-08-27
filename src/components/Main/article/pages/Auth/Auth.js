@@ -1,8 +1,16 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import stylesheet from './Auth.module.css';
 
+const mapStateToProps = (state) => ({
+    isAuth: state.user.isAuth,
+});
+
 const Login = (props) => {
+    const isAuth = props.isAuth;
+    const navigate = useNavigate();
+    isAuth && navigate('/home');
 
     return (
         <div className={stylesheet.disable_text_selection}>
@@ -23,4 +31,4 @@ const Login = (props) => {
     )
 };
 
-export default Login;
+export default connect(mapStateToProps)(Login);

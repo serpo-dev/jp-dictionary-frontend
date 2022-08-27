@@ -8,7 +8,7 @@ const characterInitialState = {
     mnemoDisc: null,
     img: null,
     mnemoImg: null,
-    variants: [],
+    variants: null,
 
     associations: [],
 

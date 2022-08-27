@@ -61,17 +61,55 @@ const ChangeCharacterContainer = (props) => {
             img: props.img,
             variants: props.variants,
 
-            associations: props.associations,
+            associations: [
+                {
+                    id: 6,
+                   componentId: 5,
+                },
+                {
+                    componentId: 5,
+                },
+            ],
 
             examLevel: props.examLevel,
 
-            translations: props.translations,
-            examples: props.examples,
-
-            attemptToLoad: props.attemptToLoad,
+            translations: [
+                {
+                    id: 7,
+                    jpNormalText: 'konnichiwa1',
+                    jpFuriganaText: 'furigana1',
+                    enText: 'english1',
+                    ruText: 'русский1',
+                    kanjiId: 9,
+                },
+                {
+                    jpNormalText: 'konnichiwa2',
+                    jpFuriganaText: 'furigana2',
+                    enText: 'english2',
+                    ruText: 'русский2',
+                    kanjiId: 9,
+                },
+            ],
+            examples: [
+                {
+                    id: 2,
+                    jpNormalText: 'konnichiwa1',
+                    jpFuriganaText: 'furigana1',
+                    enText: 'english1',
+                    ruText: 'русский1',
+                    kanjiId: 9,
+                },
+                {
+                    jpNormalText: 'konnichiwa2',
+                    jpFuriganaText: 'furigana2',
+                    enText: 'english2',
+                    ruText: 'русский2',
+                    kanjiId: 9,
+                },
+            ],
         };
         changeCharacterThunk(characterData);
-        navigate('../');
+        navigate(`../${props.URI}`);
     };
 
     return (

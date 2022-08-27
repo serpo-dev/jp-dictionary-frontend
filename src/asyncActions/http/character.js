@@ -25,7 +25,7 @@ export const createCharacter = async (characterData) => {
 export const changeCharacter = async (characterData) => {
     const characterId = characterData.id;
     try {
-        await $authHost.post(`/api/character/${characterId}`,
+        await $authHost.put(`/api/character/${characterId}`,
             {
                 ...characterData,
             }

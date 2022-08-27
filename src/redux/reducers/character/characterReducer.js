@@ -42,16 +42,35 @@ export const characterReducer = (state = characterInitialState, action) => {
         case characterActionTypes.UPDATE_CHARACTER:
             let updateCharacterNewState = {
                 ...state,
-                variants: state.variants.length !== 0 ? [...state.variants] : [],
                 associations: state.associations.length !== 0 ? [...state.associations] : [],
                 translations: state.translations.length !== 0 ? [...state.translations] : [],
                 examples: state.examples.length !== 0 ? [...state.examples] : [],
+            };
+            if (state.type === 'COMPONENT') {
+                updateCharacterNewState = {
+                    ...state,
+                    examLevel: null,
+                    translations: [],
+                    examples: [],
+                };
             };
             switch (action.payload[1]) {
                 case 'TITLE':
                     updateCharacterNewState = {
                         ...updateCharacterNewState,
                         title: action.payload[0],
+                    };
+                    break;
+                case 'TYPE':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        type: action.payload[0],
+                    };
+                    break;
+                case 'VARIANTS':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        variants: action.payload[0],
                     };
                     break;
                 case 'MEANING':
@@ -72,6 +91,30 @@ export const characterReducer = (state = characterInitialState, action) => {
                         mnemoDisc: action.payload[0],
                     };
                     break;
+                case 'EXAM_LEVEL':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        examLevel: action.payload[0],
+                    };
+                    break;
+                case 'ASSOCIATIONS':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        associations: action.payload[0],
+                    };
+                    break;
+                case 'TRANSLATIONS':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        translations: action.payload[0],
+                    };
+                    break;
+                case 'EXAMPLES':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        examples: action.payload[0],
+                    };
+                    break;
                 case 'STROKE_ORDER_IMG':
                     updateCharacterNewState = {
                         ...updateCharacterNewState,
@@ -85,6 +128,7 @@ export const characterReducer = (state = characterInitialState, action) => {
                     };
                     break;
             };
+            console.log(updateCharacterNewState)
             return updateCharacterNewState;
 
         case characterActionTypes.SET_ATTEMPT:

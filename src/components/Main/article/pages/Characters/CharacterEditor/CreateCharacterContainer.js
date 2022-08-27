@@ -51,16 +51,14 @@ const CreateCharacterContainer = (props) => {
 
             translations: props.translations,
             examples: props.examples,
-
-            attemptToLoad: props.attemptToLoad,
         };
-        createCharacterThunk(characterData);
-        navigate('../');
+        const resURI = createCharacterThunk(characterData);
+        navigate(`../${resURI}`);
     };
 
     return (
         <div>
-            <CharacterEditor {...props} toPublish={toPublish} type='create' />
+            <CharacterEditor {...props} toPublish={toPublish} containerType='create' />
         </div>
     );
 };
