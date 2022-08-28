@@ -82,11 +82,12 @@ const Start = (props) => {
                 </div>
                 <div className='flex flex-col h-screen w-screen z-20'>
                     <nav className='
-                    flex justify-center h-20 
-                    lg:justify-end 
+                        flex justify-center h-20 
+                        lg:justify-end 
                     '>
                         <div className='flex flex-rows space-x-10 mt-10
-                        lg:mr-[10vw]'>
+                            lg:mr-[10vw]
+                        '>
                             <NavLink to='/auth' className='flex flex-col justify-center bg-gradient-to-r from-pink-500 to-rose-500 h-14 pl-6 pr-6 font-bold text-2xl rounded-full text-slate-900 shadow-lg hover:text-rose-100 hover:bg-rose-700 hover:scale-110 transition ease-in-out duration-300'>
                                 <p>
                                     Get started for free!

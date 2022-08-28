@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router';
 
@@ -10,7 +10,10 @@ import CharacterEditor from './CharacterEditor';
 
 const mapStateToProps = (state) => {
     const character = state.character;
+    const isAuth = state.user.isAuth;
     return {
+        isAuth,
+
         type: character.type,
         title: character.title,
         desctiption: character.desctiption,
@@ -28,11 +31,15 @@ const mapStateToProps = (state) => {
         examples: character.examples,
 
         attemptToLoad: character.attemptToLoad,
+        lastField: character.lastField,
     };
 };
 
 const CreateCharacterContainer = (props) => {
     const navigate = useNavigate();
+    useEffect(() => {
+        !props.isAuth && navigate('../')
+    }, []);
 
     const toPublish = () => {
         const characterData = {

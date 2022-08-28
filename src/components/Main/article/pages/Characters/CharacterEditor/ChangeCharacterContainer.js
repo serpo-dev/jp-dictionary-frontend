@@ -10,7 +10,10 @@ import CharacterEditor from './CharacterEditor';
 
 const mapStateToProps = (state) => {
     const character = state.character;
+    const isAuth = state.user.isAuth;
     return {
+        isAuth,
+
         id: character.id,
         URI: character.URI,
         type: character.type,
@@ -30,16 +33,19 @@ const mapStateToProps = (state) => {
         examples: character.examples,
 
         attemptToLoad: character.attemptToLoad,
+        lastField: character.lastField,
     };
 };
 
 const ChangeCharacterContainer = (props) => {
+    const navigate = useNavigate();
     const params = useParams();
     const characterId = Number(params.name.split('-')[0]);
     useEffect(() => {
+        !props.isAuth && navigate('../')
         props.setCharacterThunk(characterId);
     }, []);
-    const navigate = useNavigate();
+
     if (props.id) {
         if (params.name !== props.URI) {
             navigate(`../${props.URI}/edit`);
@@ -61,52 +67,12 @@ const ChangeCharacterContainer = (props) => {
             img: props.img,
             variants: props.variants,
 
-            associations: [
-                {
-                    id: 6,
-                   componentId: 5,
-                },
-                {
-                    componentId: 5,
-                },
-            ],
+            associations: props.associations,
 
             examLevel: props.examLevel,
 
-            translations: [
-                {
-                    id: 7,
-                    jpNormalText: 'konnichiwa1',
-                    jpFuriganaText: 'furigana1',
-                    enText: 'english1',
-                    ruText: 'русский1',
-                    kanjiId: 9,
-                },
-                {
-                    jpNormalText: 'konnichiwa2',
-                    jpFuriganaText: 'furigana2',
-                    enText: 'english2',
-                    ruText: 'русский2',
-                    kanjiId: 9,
-                },
-            ],
-            examples: [
-                {
-                    id: 2,
-                    jpNormalText: 'konnichiwa1',
-                    jpFuriganaText: 'furigana1',
-                    enText: 'english1',
-                    ruText: 'русский1',
-                    kanjiId: 9,
-                },
-                {
-                    jpNormalText: 'konnichiwa2',
-                    jpFuriganaText: 'furigana2',
-                    enText: 'english2',
-                    ruText: 'русский2',
-                    kanjiId: 9,
-                },
-            ],
+            translations: props.translations,
+            examples: props.examples,
         };
         changeCharacterThunk(characterData);
         navigate(`../${props.URI}`);

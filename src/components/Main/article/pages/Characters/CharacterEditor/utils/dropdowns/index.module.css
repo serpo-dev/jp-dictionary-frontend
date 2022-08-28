@@ -16,7 +16,7 @@
 }
 
 .dropdown_body {
-    max-height: auto;
+    max-height: var();
     overflow: hidden;
     transition: max-height 0.3s ease-out;
 }

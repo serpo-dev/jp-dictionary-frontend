@@ -17,6 +17,7 @@ const characterInitialState = {
     examples: [],
 
     attemptToLoad: false,
+    lastField: null,
 };
 
 export default characterInitialState;

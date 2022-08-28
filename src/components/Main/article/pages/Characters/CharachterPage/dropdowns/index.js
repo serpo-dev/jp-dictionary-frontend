@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import stylesheet from './index.module.css';
 
 const Dropdown = (props) => {
     const dropdownType = props.type;
 
+    useEffect(() => {
+        const contentSize = document.querySelector(`#${dropdownType}_${stylesheet.containerText_body}`).offsetHeight;
+        document.querySelector(`#${dropdownType}_${stylesheet.dropdown_body}`).style.maxHeight = `${contentSize}px`;
+    }, []);
+
+    const [heightToggle, setHeightToggle] = useState(true);
     const click = () => {
         const dropElem = document.querySelector(`#${dropdownType}_${stylesheet.dropdown_body}`);
         const textElem = document.querySelector(`#${dropdownType}_${stylesheet.containerText_body}`);
@@ -11,6 +17,13 @@ const Dropdown = (props) => {
         dropElem.classList.toggle(stylesheet.dropdown_hide);
         textElem.classList.toggle(stylesheet.containerText_hide);
         triangleElem.classList.toggle(stylesheet.triangle_right);
+        if (heightToggle) {
+            document.querySelector(`#${dropdownType}_${stylesheet.dropdown_body}`).style.maxHeight = `0px`;
+        } else {
+            const contentSize = document.querySelector(`#${dropdownType}_${stylesheet.containerText_body}`).offsetHeight;
+            document.querySelector(`#${dropdownType}_${stylesheet.dropdown_body}`).style.maxHeight = `${contentSize}px`;
+        };
+        setHeightToggle(!heightToggle);
     };
 
     return (

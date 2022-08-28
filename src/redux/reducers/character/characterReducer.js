@@ -45,6 +45,7 @@ export const characterReducer = (state = characterInitialState, action) => {
                 associations: state.associations.length !== 0 ? [...state.associations] : [],
                 translations: state.translations.length !== 0 ? [...state.translations] : [],
                 examples: state.examples.length !== 0 ? [...state.examples] : [],
+                lastField: action.payload[1],
             };
             if (state.type === 'COMPONENT') {
                 updateCharacterNewState = {
@@ -106,13 +107,23 @@ export const characterReducer = (state = characterInitialState, action) => {
                 case 'TRANSLATIONS':
                     updateCharacterNewState = {
                         ...updateCharacterNewState,
-                        translations: action.payload[0],
+                        translations: [...updateCharacterNewState.translations],
+                    };
+                    const curNumTrans = Number(action.payload[2]);
+                    updateCharacterNewState.translations[curNumTrans] = {
+                        ...updateCharacterNewState.translations[curNumTrans],
+                        ...action.payload[0],
                     };
                     break;
                 case 'EXAMPLES':
                     updateCharacterNewState = {
                         ...updateCharacterNewState,
-                        examples: action.payload[0],
+                        examples: [...updateCharacterNewState.examples],
+                    };
+                    const curNumExmp = Number(action.payload[2]);
+                    updateCharacterNewState.examples[curNumExmp] = {
+                        ...updateCharacterNewState.examples[curNumExmp],
+                        ...action.payload[0],
                     };
                     break;
                 case 'STROKE_ORDER_IMG':
@@ -126,6 +137,37 @@ export const characterReducer = (state = characterInitialState, action) => {
                         ...updateCharacterNewState,
                         mnemoImg: action.payload[0],
                     };
+                    break;
+
+                // case 'ASSOCIATIONS_NEW_ONE':
+                //     updateCharacterNewState = {
+                //         ...updateCharacterNewState,
+                //         associations: [...updateCharacterNewState.associations, {
+
+                //         }],
+                //     };
+                //     break;
+                case 'TRANSLATIONS_NEW_ONE':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        translations: [...updateCharacterNewState.translations, {
+                            jpNormalText: null,
+                            jpFuriganaText: null,
+                            enText: null,
+                            ruText: null,
+                        }],
+                    }
+                    break;
+                case 'EXAMPLES_NEW_ONE':
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        examples: [...updateCharacterNewState.examples, {
+                            jpNormalText: null,
+                            jpFuriganaText: null,
+                            enText: null,
+                            ruText: null,
+                        }],
+                    }
                     break;
             };
             console.log(updateCharacterNewState)

@@ -3,6 +3,7 @@ import stylesheet from './CharacterEditor.module.css';
 
 import strokeOrderBg from '../../../../../../assets/images/characters/characterEditor/1x1.png';
 import mnemoImgBg from '../../../../../../assets/images/characters/characterEditor/16x9.png';
+import Dropdown from './utils/dropdowns/index';
 
 
 const CharacterEditor = (props) => {
@@ -16,10 +17,10 @@ const CharacterEditor = (props) => {
     };
 
     const change = (event) => {
-        console.log(event.timeStamp)
         const elemValue = event.target.value;
 
         let elemType = event.target.id;
+        console.log(event.taeget)
         elemType = elemType.split('_');
         elemType.shift();
         elemType = elemType.join('_');
@@ -84,28 +85,15 @@ const CharacterEditor = (props) => {
                             </div>
                         </div>
                         <div>
-                            <div className='flex items-center justify-start space-x-4 text-bold break-normal min-h-fit'>
-                                <label for={`${stylesheet}_ASSOCIATIONS`} className='basis-1/4 w-full text-sm cursor-pointer font-bold'>Associations:</label>
-                                <input id={`${stylesheet}_ASSOCIATIONS`} onChange={change} value={props.accociations} type='text' className='basis-3/4 w-full pl-2 pr-2 font-semibold self-end text-center rounded-lg bg-rose-200 h-8' />
-                            </div>
+                            <Dropdown name='associations' updateCharacterActionCreator={props.updateCharacterActionCreator} {...props} />
                             <div className='mt-2 bg-rose-100 rounded-lg w-full h-10'>
                             </div>
                         </div>
                         <div>
-                            <div className='flex items-center justify-start space-x-4 text-bold break-normal min-h-fit'>
-                                <label for={`${stylesheet}_TRANSLATIONS`} className='basis-1/4 w-full text-sm cursor-pointer font-bold'>Translations:</label>
-                                <input id={`${stylesheet}_TRANSLATIONS`} onChange={change} value={props.translations} type='text' className='basis-3/4 w-full pl-2 pr-2 font-semibold self-end text-center rounded-lg bg-rose-200 h-8' />
-                            </div>
-                            <div className='mt-2 bg-rose-100 rounded-lg w-full h-10'>
-                            </div>
+                            <Dropdown name='translations' updateCharacterActionCreator={props.updateCharacterActionCreator} {...props} />
                         </div>
                         <div>
-                            <div className='flex items-center justify-start space-x-4 text-bold break-normal min-h-fit'>
-                                <label for={`${stylesheet}_EXAMPLES`} className='basis-1/4 w-full text-sm cursor-pointer font-bold'>Examples:</label>
-                                <input id={`${stylesheet}_EXAMPLES`} onChange={change} value={props.examples} type='text' className='basis-3/4 w-full pl-2 pr-2 font-semibold self-end text-center rounded-lg bg-rose-200 h-8' />
-                            </div>
-                            <div className='mt-2 bg-rose-100 rounded-lg w-full h-10'>
-                            </div>
+                            <Dropdown name='examples' updateCharacterActionCreator={props.updateCharacterActionCreator} {...props} />
                         </div>
                     </div>
                 }
@@ -114,7 +102,7 @@ const CharacterEditor = (props) => {
                 <div className='flex flex-col space-y-6'>
                     <div>
                         <div className='flex justify-center'>
-                            <div className='h-[200px] w-[200px] bg-contain bg-no-repeat bg-center mb-4 ' style={{ backgroundImage: `url(${strokeOrderBg})` }}>
+                            <div className='h-[200px] w-[200px] bg-contain bg-no-repeat bg-center mb-4' style={{ backgroundImage: `url(${strokeOrderBg})` }}>
                                 <div className='grid place-content-center h-full w-full'>
                                     {props.img ? <img src={props.img} className='h-[200px] w-[200px] border-4 border-rose-900' /> : null}
                                 </div>
