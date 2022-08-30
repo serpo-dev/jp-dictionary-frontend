@@ -52,7 +52,9 @@ const Dropdown = (props) => {
             || (props.lastField === 'EXAMPLES' && dropdownType === 'examples')
             || (props.lastField === 'ASSOCIATIONS_NEW_ONE' && dropdownType === 'associations')
             || (props.lastField === 'TRANSLATIONS_NEW_ONE' && dropdownType === 'translations')
-            || (props.lastField === 'EXAMPLES_NEW_ONE' && dropdownType === 'examples');
+            || (props.lastField === 'EXAMPLES_NEW_ONE' && dropdownType === 'examples')
+            || (props.lastField === 'TRANSLATIONS_DELETE_ONE' && dropdownType === 'translations')
+            || (props.lastField === 'EXAMPLES_DELETE_ONE' && dropdownType === 'examples');
 
         const isChangedField = isLastField
         if (isChangedField) {

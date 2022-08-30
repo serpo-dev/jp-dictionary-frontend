@@ -139,14 +139,14 @@ export const characterReducer = (state = characterInitialState, action) => {
                     };
                     break;
 
-                // case 'ASSOCIATIONS_NEW_ONE':
-                //     updateCharacterNewState = {
-                //         ...updateCharacterNewState,
-                //         associations: [...updateCharacterNewState.associations, {
+                case 'ASSOCIATIONS_NEW_ONE':
+                    //     updateCharacterNewState = {
+                    //         ...updateCharacterNewState,
+                    //         associations: [...updateCharacterNewState.associations, {
 
-                //         }],
-                //     };
-                //     break;
+                    //         }],
+                    //     };
+                    break;
                 case 'TRANSLATIONS_NEW_ONE':
                     updateCharacterNewState = {
                         ...updateCharacterNewState,
@@ -167,6 +167,25 @@ export const characterReducer = (state = characterInitialState, action) => {
                             enText: null,
                             ruText: null,
                         }],
+                    }
+                    break;
+
+                case 'ASSOCIATIONS_DELETE_ONE':
+                    break;
+                case 'TRANSLATIONS_DELETE_ONE':
+                    const prevTranslations = updateCharacterNewState.translations;
+                    prevTranslations.splice(Number(action.payload[2]), 1);
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        translations: prevTranslations,
+                    }
+                    break;
+                case 'EXAMPLES_DELETE_ONE':
+                    const prevExamples = updateCharacterNewState.examples;
+                    prevExamples.splice(Number(action.payload[2]), 1);
+                    updateCharacterNewState = {
+                        ...updateCharacterNewState,
+                        examples: prevExamples,
                     }
                     break;
             };

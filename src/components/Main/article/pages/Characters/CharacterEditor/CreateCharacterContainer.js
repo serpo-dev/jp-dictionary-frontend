@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
         type: character.type,
         title: character.title,
-        desctiption: character.desctiption,
+        description: character.description,
         meaning: character.meaning,
         mnemoDisc: character.mnemoDisc,
         mnemoImg: character.mnemoImg,
@@ -45,7 +45,7 @@ const CreateCharacterContainer = (props) => {
         const characterData = {
             type: props.type,
             title: props.title,
-            desctiption: props.desctiption,
+            description: props.description,
             meaning: props.meaning,
             mnemoDisc: props.mnemoDisc,
             mnemoImg: props.mnemoImg,
