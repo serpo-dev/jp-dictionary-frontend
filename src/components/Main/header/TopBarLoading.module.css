@@ -8,11 +8,11 @@ barBody {
   font: 150%/1.4 Helvetica, Arial, sans-serif;
   padding: 20px;
   letter-spacing: 10px;
-}  
+}
 
 .well {
   width: 100%;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   background-image: linear-gradient(to bottom, #fdced4, #f9a6d2);
   background-repeat: repeat-x;
   border-radius: 3px;
@@ -24,7 +24,7 @@ barBody {
   animation: progress 2s;
   padding: 2px;
   text-align: center;
-  color: rgba(255,255,255,100);
+  color: rgba(255, 255, 255, 100);
   background-image: linear-gradient(135deg, #faeaeb, #fae9ef, #f9e7f3);
   border-radius: 4px 4px 4px 4px;
 }
@@ -32,10 +32,10 @@ barBody {
 @keyframes progress {
   from {
     width: 0;
-    color: rgba(255,255,255,0);
+    color: rgba(255, 255, 255, 0);
   }
   to {
     width: 100%;
-    color: rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
   }
 }

@@ -1,87 +1,87 @@
 .pointer_events_none {
-    pointer-events: none;
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                       not supported by any browser */
 }
 
 .dropdown_body {
-    max-height: var();
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
+  max-height: var();
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
 }
 
 .dropdown_hide {
-    max-height: 0px;
-    transition: max-height 0.2s ease-in;
+  max-height: 0px;
+  transition: max-height 0.2s ease-in;
 }
 
 .containerCheckbox {
-    display: none;
+  display: none;
 }
 
 .containerTitle {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .containerText_body {
-    animation: unwrapping 0.7s ease;
+  animation: unwrapping 0.7s ease;
 }
 
 .containerText_hide {
-    animation: wrapping 0.7s ease;
+  animation: wrapping 0.7s ease;
 }
 
 @keyframes unwrapping {
-    0% {
-        transform: scaleY(0);
-        transform-origin: top;
-    }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
 
-    60% {
-        transform: scaleY(1);
-        transform-origin: top;
-    }
+  60% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
 }
 
 @keyframes wrapping {
-    0% {
-        transform: scaleY(1);
-        transform-origin: top;
-    }
+  0% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
 
-    80% {
-        transform: scaleY(0);
-        transform-origin: top;
-    }
+  80% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
 }
 
 .triangle_down {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid #f95959;
-    margin: 0;
-    padding: 0;
-    height: 0;
-    width: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #f95959;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  width: 0;
 }
 
 .triangle_right {
-    border-bottom: 5px solid transparent;
-    border-left: 10px solid #f95959;
-    border-top: 5px solid transparent;
-    margin: 0;
-    padding: 0;
-    height: 0;
-    width: 0;
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid #f95959;
+  border-top: 5px solid transparent;
+  margin: 0;
+  padding: 0;
+  height: 0;
+  width: 0;
 }

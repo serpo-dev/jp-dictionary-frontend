@@ -1,6 +1,6 @@
-import componentsActionTypes from './componentsActionTypes';
+import componentsActionTypes from "./componentsActionTypes";
 
 export const getComponentsActionCreator = (allComponents) => ({
-    type: componentsActionTypes.GET_COMPONENTS,
-    payload: allComponents
+  type: componentsActionTypes.GET_COMPONENTS,
+  payload: allComponents,
 });

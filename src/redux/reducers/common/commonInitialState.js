@@ -1,5 +1,5 @@
 const initialState = {
-    isTopBarLoading: false
+  isTopBarLoading: false,
 };
 
 export default initialState;

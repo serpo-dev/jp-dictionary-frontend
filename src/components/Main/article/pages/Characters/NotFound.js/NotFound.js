@@ -1,12 +1,11 @@
-import React from 'react';
-import { useNavigate, useParams } from 'react-router';
-
+import React from "react";
+import { useNavigate, useParams } from "react-router";
 
 const NotFound = () => {
-    const navigate = useNavigate();
-    navigate('../');
+  const navigate = useNavigate();
+  navigate("../");
 
-    return (<></>)
+  return <></>;
 };
 
 export default NotFound;

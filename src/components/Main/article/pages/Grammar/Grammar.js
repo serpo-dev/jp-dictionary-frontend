@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Grammar = (props) => {
-    return (
-        <div>
-            Grammar
-        </div>
-    );
+  return <div>Grammar</div>;
 };
 
 export default Grammar;

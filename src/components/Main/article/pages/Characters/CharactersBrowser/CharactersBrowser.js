@@ -1,12 +1,7 @@
-import React from 'react';
-
+import React from "react";
 
 const CharactersBrowser = (props) => {
-    return (
-        <div>
-            CharactersBrowser
-        </div>
-    );
+  return <div>CharactersBrowser</div>;
 };
 
 export default CharactersBrowser;

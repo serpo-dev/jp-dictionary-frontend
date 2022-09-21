@@ -1,7 +1,7 @@
 .editor {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 .editor:focus-visible {
-    outline: none;
-} 
+  outline: none;
+}

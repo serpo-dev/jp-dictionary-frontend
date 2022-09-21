@@ -1,9 +1,6 @@
 const settings = {
-    onlyAllowedCharacters: false,
-    allowedCharacters: [
-        `${s}`
-    ],
-    
+  onlyAllowedCharacters: false,
+  allowedCharacters: [`${s}`],
 };
 
 export default settings;
