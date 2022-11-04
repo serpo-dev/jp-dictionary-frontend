@@ -10,21 +10,23 @@ import { characterReducer } from "./reducers/character/characterReducer";
 import { grammarReducer } from "./reducers/grammar/grammarReducer";
 import { questionsReducer } from "./reducers/questions/questionsReducer";
 import { commonReducer } from "./reducers/common/commonReducer";
+import kanjisReducer from "./reducers/kanjis/kianjisReducer";
 
 const rootReducer = combineReducers({
-  common: commonReducer,
+    common: commonReducer,
 
-  user: userReducer,
+    user: userReducer,
 
-  articles: articlesReducer,
-  character: characterReducer,
-  grammar: grammarReducer,
-  questions: questionsReducer,
+    articles: articlesReducer,
+    character: characterReducer,
+    kanjis: kanjisReducer,
+    grammar: grammarReducer,
+    questions: questionsReducer,
 });
 
 const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+    rootReducer,
+    composeWithDevTools(applyMiddleware(thunk))
 );
 
 export default store;

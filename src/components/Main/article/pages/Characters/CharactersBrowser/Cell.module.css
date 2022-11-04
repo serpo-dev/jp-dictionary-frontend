@@ -1,0 +1,29 @@
+.box {
+    border-width: 2px;
+    border-color: gray;
+    margin: 7px;
+    padding: 0;
+    height: 70px;
+    width: 70px;
+    border-radius: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.box:hover {
+    background-color: rgb(189, 189, 189);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.box:active {
+    background-color: gray;
+    transition: background-color 0.1s ease;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+}

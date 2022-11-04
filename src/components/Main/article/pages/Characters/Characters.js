@@ -8,17 +8,20 @@ import CreateCharacterContainer from "./CharacterEditor/CreateCharacterContainer
 import NotFound from "./NotFound.js/NotFound";
 
 const Characters = () => {
-  return (
-    <div>
-      <Routes>
-        <Route path="/*" element={<CharactersBrowser />} />
-        <Route path="/:name" element={<CharacterPage />} />
-        <Route path="/:name/edit" element={<ChangeCharacterContainer />} />
-        <Route path="/create" element={<CreateCharacterContainer />} />
-        <Route path="/:name/*" element={<NotFound />} />
-      </Routes>
-    </div>
-  );
+    return (
+        <div>
+            <Routes>
+                <Route path="/*" element={<CharactersBrowser />} />
+                <Route path="/:name" element={<CharacterPage />} />
+                <Route
+                    path="/:name/edit"
+                    element={<ChangeCharacterContainer />}
+                />
+                <Route path="/create" element={<CreateCharacterContainer />} />
+                <Route path="/:name/*" element={<NotFound />} />
+            </Routes>
+        </div>
+    );
 };
 
 export default Characters;
